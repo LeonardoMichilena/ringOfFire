@@ -1,31 +1,127 @@
 .start-screen {
-    background-color: #404040;
+    background-color: black;
     width: 100vw;
     height: 100vh;
     max-width: 100%;
     max-height: 100%;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 
     img {
-        height: 100vh;
+        display: flex;
+        position: relative;
+        height: 75vh;
+        overflow: hidden;
+        z-index: -1;
+        animation: flameZoom 2s ease-in, flameSpin 0.2s ease-in-out infinite;
+        animation-delay: 0s, 2s; 
     }
+}
+
+.title {
+    background-color: transparent;
+    display: flex;
+    h1 {
+        font-size: 5em;
+        font-family: 'Stalinist One', cursive;
+    }
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    animation: titleZoom 5s ease-in;
+    text-shadow: 10px 5px red;
+
+
 }
 
 .start-label-box {
     position: absolute;
     height: 10vh;
-    width: 20%;
+    width: 25%;
     bottom: 50px;
     display: flex;
     justify-content: center;
-    background-color: grey;
+    background-color: black;
     border-radius: 10px;
+    z-index: 3;
+
     filter: brightness(1.5);
+    animation: startUp 3s ease;
         cursor: pointer;
-    p {
-        font-size: large;
-        
+    button {
+        border-radius: 15px;
+        font-size: 30px;
+        z-index: 4;
+        cursor: pointer;
+        font-family: 'Indie Flower', cursive;
+        width: 100%;
     }
+}
+
+@keyframes flameZoom {
+    0% {
+        transform: scale(0) rotate(0deg);
+    }
+    100% {
+        transform: scale(1) rotate(1080deg);
+    }
+}
+@keyframes flameSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes titleZoom {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+@keyframes startUp {
+    0% {
+        transform: translate(0,200px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .start-screen {
+        img {
+            display: flex;
+            position: relative;
+            height: 50vh;
+            z-index: -1;
+            animation: flameZoom 2s ease-in, flameSpin 0.2s ease-in-out infinite;
+            animation-delay: 0s, 2s; 
+        }
+    }
+
+    .title {
+        h1{
+            font-size: 2em;
+        }
+    }
+
+    .start-label-box {
+        width: 50vw;     
+        button {
+        width: 50vw;     
+        border: 5px;
+        border: 5px grey solid;
+       }
+    }
+
 }

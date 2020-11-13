@@ -23,7 +23,6 @@ export class GameComponent implements OnInit {
     this.newGame();
 
     this.route.params.subscribe((params) => {
-      console.log(params.id);
       this.gameId = params.id;
       
     this
@@ -32,7 +31,6 @@ export class GameComponent implements OnInit {
       .doc(this.gameId)
       .valueChanges()
       .subscribe((game: any) => {
-        console.log("Game Update: ", game);
         this.game.currentPlayer = game.currentPlayer;
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
@@ -54,8 +52,7 @@ export class GameComponent implements OnInit {
 
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
-      console.log('New Card: ' + this.game.currentCard);
-      console.log('Game is', this.game); 
+
       this.saveGame();
      
       this.game.currentPlayer++;
@@ -77,7 +74,6 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
-      console.log('The dialog was closed', name);
       if(name && name.length > 0) {
         this.game.players.push(name);
         this.saveGame();
